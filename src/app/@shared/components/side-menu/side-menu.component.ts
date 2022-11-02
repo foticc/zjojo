@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AccordionItemClickEvent } from 'ng-devui';
+import { AccordionItemClickEvent, DialogService } from 'ng-devui';
 import { MenuClickServiceService } from './menu-click-service.service';
 
 @Component({
@@ -14,7 +14,5 @@ export class SideMenuComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  itemClick(event: AccordionItemClickEvent) {
-    this.menuItemChange.toggle(event);
-  }
+  itemClick(event: AccordionItemClickEvent) {}
 }

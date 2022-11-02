@@ -12,15 +12,23 @@ import { MenuClickServiceService } from '../side-menu/menu-click-service.service
 export class PageBreadcrumbComponent implements OnInit, OnDestroy {
   data: Observable<any> = from(menuData);
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private menuItemChange: MenuClickServiceService) {
+  constructor(private router: Router, private menuItemChange: MenuClickServiceService) {
     this.menuItemChange.menuItem.subscribe((s) => {
       console.log('PageBreadcrumbComponent', s);
     });
+    this.router.events
+      .pipe(
+        filter((evt) => evt instanceof NavigationEnd),
+        map((m) => {
+          return m as NavigationEnd;
+        })
+      )
+      .subscribe((v) => {
+        console.log('PageBreadcrumbComponent', v);
+      });
   }
 
-  ngOnInit(): void {
-    console.log('PageBreadcrumbComponent', this.activatedRoute);
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {}
 
