@@ -1,0 +1,89 @@
+<d-row class="container">
+  <d-col [dSpan]="24">
+    <div class="da-list-wrap">
+      <div class="da-content-wrapper">
+        <da-layout-row [daGutter]="[0, 24]" [daJustify]="'center'" [daAlign]="'stretch'">
+          <da-col-item class="full-height" [daSpan]="4" [daXs]="4">
+            <div class="da-list-container">
+              <d-tree
+                #basicTree
+                [tree]="data"
+                [iconLeaf]="iconLeft"
+                (nodeSelected)="onNodeSelected($event)"
+                (nodeToggled)="onNodeToggled($event)"
+              >
+              </d-tree>
+            </div>
+          </da-col-item>
+          <da-col-item [daSpan]="20" [daXs]="20">
+            <div class="da-list-container">
+              <div class="da-list-header">
+                <div class="da-header-left">
+                  <div class="da-header-item">
+                    <div class="da-header-item-label">Border Type：</div>
+                    <input dTextInput />
+                  </div>
+                  <div class="da-header-item">
+                    <div class="da-header-item-label">Size：</div>
+                    <input dTextInput />
+                  </div>
+                  <div class="da-header-item">
+                    <div class="da-header-item-label">Layout：</div>
+                    <input dTextInput />
+                  </div>
+                </div>
+                <div class="header-right">
+                  <d-button>Reset</d-button>
+                </div>
+              </div>
+              <div class="list-content" dLoading>
+                <d-data-table
+                  [dataSource]="basicDataSource"
+                  [scrollable]="true"
+                  [tableWidthConfig]="tableWidthConfig"
+                  [tableOverflowType]="'overlay'"
+                >
+                  <thead dTableHead>
+                    <tr dTableRow>
+                      <th dHeadCell>#</th>
+                      <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">{{ colOption.header }}</th>
+                    </tr>
+                  </thead>
+                  <tbody dTableBody>
+                    <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                      <tr dTableRow>
+                        <td dTableCell>{{ rowIndex + 1 }}</td>
+                        <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+                          <div *ngIf="colOption.fieldType === 'image'; else text">
+                            <d-avatar [name]="rowItem[colOption.field]"></d-avatar>
+                          </div>
+                          <ng-template #text>
+                            {{
+                              colOption.fieldType === 'date'
+                                ? (rowItem[colOption.field] | i18nDate: 'short':false)
+                                : rowItem[colOption.field]
+                            }}
+                          </ng-template>
+                          <ng-content select="selector"></ng-content>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </d-data-table>
+                <d-pagination
+                  [size]="'sm'"
+                  [canViewTotal]="true"
+                  [canJumpPage]="true"
+                  [canChangePageSize]="true"
+                  [total]="100"
+                  [pageSize]="20"
+                  [pageIndex]="1"
+                ></d-pagination>
+              </div>
+            </div>
+          </da-col-item>
+        </da-layout-row>
+      </div>
+    </div>
+  </d-col>
+</d-row>
