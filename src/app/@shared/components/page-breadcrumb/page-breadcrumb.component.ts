@@ -1,8 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, Observable, of, mergeMap, from, concat } from 'rxjs';
-import { menuData, MenuItem } from '../../../../app/pages/data/store-data';
-import { MenuClickServiceService } from '../side-menu/menu-click-service.service';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, PRIMARY_OUTLET, Router } from '@angular/router';
+import { filter, takeUntil, Subject, startWith } from 'rxjs';
+
+interface MenuItem {
+  title: string;
+  icon?: string;
+  path: string;
+  isParent: boolean;
+}
 
 @Component({
   selector: 'app-page-breadcrumb',
@@ -10,27 +15,52 @@ import { MenuClickServiceService } from '../side-menu/menu-click-service.service
   styleUrls: ['./page-breadcrumb.component.scss'],
 })
 export class PageBreadcrumbComponent implements OnInit, OnDestroy {
-  data: Observable<any> = from(menuData);
+  breadcrumbs: MenuItem[] = [];
+  private destory$ = new Subject<void>();
 
-  constructor(private router: Router, private menuItemChange: MenuClickServiceService) {
-    this.menuItemChange.menuItem.subscribe((s) => {
-      console.log('PageBreadcrumbComponent', s);
-    });
+  constructor(private router: Router, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
     this.router.events
       .pipe(
         filter((evt) => evt instanceof NavigationEnd),
-        map((m) => {
-          return m as NavigationEnd;
-        })
+        takeUntil(this.destory$),
+        startWith(true)
       )
-      .subscribe((v) => {
-        console.log('PageBreadcrumbComponent', v);
+      .subscribe(() => {
+        this.breadcrumbs = this.buildBreadcrumbs(this.route);
+        this.cdr.markForCheck();
       });
   }
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void {
+    this.destory$.next();
+    this.destory$.complete();
+  }
 
-  ngOnDestroy(): void {}
+  private buildBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: MenuItem[] = []): MenuItem[] {
+    const children: ActivatedRoute[] = route.children;
+    if (children.length === 0) {
+      return breadcrumbs;
+    }
 
-  showdata() {}
+    for (const child of children) {
+      if (child.outlet === PRIMARY_OUTLET) {
+        const routeUrl: string = child.snapshot.url
+          .map((segment) => segment.path)
+          .filter((path) => path)
+          .join('/');
+        const nextUrl = routeUrl ? `${url}/${routeUrl}` : url;
+        if (routeUrl) {
+          breadcrumbs.push({
+            title: child.snapshot.data['title'] ? child.snapshot.data['title'] : '未命名',
+            path: nextUrl,
+            isParent: child.children.length > 0,
+          });
+        }
+        return this.buildBreadcrumbs(child, nextUrl, breadcrumbs);
+      }
+    }
+    return breadcrumbs;
+  }
 }

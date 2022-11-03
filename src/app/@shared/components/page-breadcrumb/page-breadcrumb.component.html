@@ -1,9 +1,11 @@
-<d-breadcrumb>
-  <d-breadcrumb-item>
-    <a routerLink="/components/zh-cn/get-start">DevUI</a>
-  </d-breadcrumb-item>
-  <d-breadcrumb-item>
-    <span>Breadcrumb</span>
-    <button (click)="showdata()">button</button>
-  </d-breadcrumb-item>
-</d-breadcrumb>
+<div class="da-content-banner">
+  <d-breadcrumb>
+    <d-breadcrumb-item>
+      <a routerLink="/">home</a>
+    </d-breadcrumb-item>
+    <d-breadcrumb-item *ngFor="let item of breadcrumbs">
+      <a [routerLink]="item.path" *ngIf="!item.isParent; else elseBlock">{{ item.title }}</a>
+      <ng-template #elseBlock>{{ item.title }}</ng-template>
+    </d-breadcrumb-item>
+  </d-breadcrumb>
+</div>

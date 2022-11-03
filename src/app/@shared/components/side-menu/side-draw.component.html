@@ -2,13 +2,20 @@
   class="da-menu"
   [data]="data"
   [menuItemTemplate]="menuTemplate"
+  [itemTemplate]="itemTemplate"
   [linkType]="'routerLink'"
   [accordionType]="'embed'"
   [autoOpenActiveMenu]="true"
-  (itemClick)="itemClick($event)"
 ></d-accordion>
 
 <ng-template #menuTemplate let-item="item">
   <i [class]="item.menuIcon" style="margin-right: 8px"></i>
   {{ item.title }}
+</ng-template>
+
+<ng-template #itemTemplate let-item="item">
+  <span>
+    <i [class]="item.menuIcon" style="margin-right: 8px"></i>
+    {{ item.title }}
+  </span>
 </ng-template>

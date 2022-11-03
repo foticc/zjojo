@@ -80,7 +80,7 @@ export class PagesComponent implements OnInit {
         filter((evt) => evt instanceof ActivationEnd),
         map((m) => {
           return m as ActivationEnd;
-        })
+        }),takeUntil(this.destroy$)
       )
       .subscribe((v) => {
         this.routeHistory.push(v);

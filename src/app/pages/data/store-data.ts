@@ -6,6 +6,7 @@ const menuData: Array<MenuItem> = [
       {
         title: 'customer-list',
         link: '/pages/customers/customer-list',
+        menuIcon: 'icon icon-add-bug',
       },
       {
         title: 'style-list',
@@ -14,62 +15,6 @@ const menuData: Array<MenuItem> = [
       {
         title: 'tree-list',
         link: '/pages/customers/tree-list',
-        children: [
-          {
-            title: 'customer-list',
-            link: '/pages/customers/customer-list',
-          },
-          {
-            title: 'style-list',
-            link: '/pages/customers/style-list',
-          },
-          {
-            title: 'tree-list',
-            link: '/pages/customers/tree-list',
-            children: [
-              {
-                title: 'customer-list',
-                link: '/pages/customers/customer-list',
-              },
-              {
-                title: 'style-list',
-                link: '/pages/customers/style-list',
-              },
-              {
-                title: 'tree-list',
-                link: '/pages/customers/tree-list',
-                children: [
-                  {
-                    title: 'customer-list',
-                    link: '/pages/customers/customer-list',
-                  },
-                  {
-                    title: 'style-list',
-                    link: '/pages/customers/style-list',
-                  },
-                  {
-                    title: 'tree-list',
-                    link: '/pages/customers/tree-list',
-                    children: [
-                      {
-                        title: 'customer-list',
-                        link: '/pages/customers/customer-list',
-                      },
-                      {
-                        title: 'style-list',
-                        link: '/pages/customers/style-list',
-                      },
-                      {
-                        title: 'tree-list',
-                        link: '/pages/customers/tree-list',
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
       },
     ],
     link: '/pages/customers',

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AccordionItemClickEvent, DialogService } from 'ng-devui';
-import { MenuClickServiceService } from './menu-click-service.service';
 
 @Component({
   selector: 'da-side-menu',
@@ -10,9 +9,7 @@ import { MenuClickServiceService } from './menu-click-service.service';
 export class SideMenuComponent implements OnInit {
   @Input() data: any;
 
-  constructor(private menuItemChange: MenuClickServiceService) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  itemClick(event: AccordionItemClickEvent) {}
 }

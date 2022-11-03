@@ -21,6 +21,7 @@ const routes: Routes = [
         path: 'style-list',
         component: StyleListComponent,
         data: {
+          title: '样式列表',
           keepAlive: true,
         },
       },

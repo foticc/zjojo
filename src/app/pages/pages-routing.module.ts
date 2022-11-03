@@ -11,6 +11,9 @@ const routes: Routes = [
       {
         path: 'getting-started',
         loadChildren: () => import('./getting-started/getting-started.module').then((m) => m.GettingStartedModule),
+        data: {
+          title: '开始使用',
+        },
       },
       {
         path: 'customers',
