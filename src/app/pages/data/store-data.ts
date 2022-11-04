@@ -16,6 +16,18 @@ const menuData: Array<MenuItem> = [
         title: 'tree-list',
         link: '/pages/customers/tree-list',
       },
+      {
+        title: '动态表单',
+        link: '/pages/customers/dynamic-form',
+      },
+      {
+        title: '多区块',
+        link: '/pages/customers/multiple-block',
+      },
+      {
+        title: '测试',
+        link: '/pages/customers/list-modal',
+      },
     ],
     link: '/pages/customers',
     menuIcon: 'icon icon-add-bug', // 你可以查询 DevUI 图标库选择一个适合的图标进行替换
