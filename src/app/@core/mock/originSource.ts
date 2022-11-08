@@ -15,14 +15,14 @@ export interface SourceType {
 }
 
 export const originSource = Mock.mock({
-  'list|2': [
+  'list|5': [
     {
       'id|+1': 1,
       firstName: '@city',
       lastName: '@cname',
       dob: '@date',
       gender: '@cword(男女)',
-      description: '@cparagraph(20,30)',
+      description: '@cparagraph(5,10)',
       avatar: '@image',
     },
   ],

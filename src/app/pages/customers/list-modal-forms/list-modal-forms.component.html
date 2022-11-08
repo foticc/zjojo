@@ -1,1 +1,74 @@
-<p>list-modal-forms works!</p>
+<div class="da-list-wrap">
+  <div class="da-content-wrapper">
+    <da-layout-row [daGutter]="[24, 24]">
+      <da-col-item [daSpan]="24" [daXs]="24">
+        <div class="da-list-container">
+          <div class="da-list-header">
+            <div class="da-header-left">
+              <div class="da-header-item">
+                <div class="da-header-item-label">Border Type:</div>
+                <input dTextInput />
+              </div>
+              <div class="da-header-item">
+                <div class="da-header-item-label">Size:</div>
+                <input dTextInput />
+              </div>
+              <div class="da-header-item">
+                <div class="da-header-item-label">Layout：</div>
+                <input dTextInput />
+              </div>
+            </div>
+            <div class="header-right">
+              <d-button>Reset</d-button>
+            </div>
+          </div>
+          <d-data-table
+            [dataSource]="basicDataSource"
+            [scrollable]="true"
+            [tableWidthConfig]="tableWidthConfig"
+            [tableOverflowType]="'overlay'"
+          >
+            <thead dTableHead>
+              <tr dTableRow>
+                <th dHeadCell>#</th>
+                <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">{{ colOption.header }}</th>
+                <th dHeadCell>Action</th>
+              </tr>
+            </thead>
+            <tbody dTableBody>
+              <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                <tr dTableRow>
+                  <td dTableCell>{{ rowIndex + 1 }}</td>
+                  <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+                    <div *ngIf="colOption.fieldType === 'image'; else text">
+                      <d-avatar [name]="rowItem[colOption.field]"></d-avatar>
+                    </div>
+                    <ng-template #text>
+                      {{ colOption.fieldType === 'date' ? (rowItem[colOption.field] | i18nDate: 'short':false) : rowItem[colOption.field] }}
+                    </ng-template>
+                    <ng-content select="selector"></ng-content>
+                  </td>
+                  <td>
+                    <div class="btn-group over-flow-ellipsis">
+                      <d-button icon="icon-edit" bsStyle="text-dark" title="edit" (click)="edit(rowItem)"></d-button>
+                      <d-button icon="icon-delete" bsStyle="text-dark" title="delete"></d-button>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </tbody>
+          </d-data-table>
+          <d-pagination
+            [size]="'sm'"
+            [canViewTotal]="true"
+            [canJumpPage]="true"
+            [canChangePageSize]="true"
+            [total]="100"
+            [pageSize]="20"
+            [pageIndex]="1"
+          ></d-pagination>
+        </div>
+      </da-col-item>
+    </da-layout-row>
+  </div>
+</div>

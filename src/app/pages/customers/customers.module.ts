@@ -11,9 +11,10 @@ import { TreeListComponent } from './tree-list/tree-list.component';
 import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
 import { MultipleBlockComponent } from './multiple-block/multiple-block.component';
 import { ListModalFormsComponent } from './list-modal-forms/list-modal-forms.component';
+import { ModalFormContentComponent } from './list-modal-forms/modal-form-content/modal-form-content.component';
 
 @NgModule({
-  declarations: [CustomersComponent, CustomerListComponent, StyleListComponent, TreeListComponent, DynamicFormsComponent, MultipleBlockComponent, ListModalFormsComponent],
+  declarations: [CustomersComponent, CustomerListComponent, StyleListComponent, TreeListComponent, DynamicFormsComponent, MultipleBlockComponent, ListModalFormsComponent, ModalFormContentComponent],
   imports: [SharedModule, DynamicFormsModule, CustomersRoutingModule],
 })
 export class CustomersModule {}
