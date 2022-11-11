@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, TableWidthConfig } from 'ng-devui';
 import { originSource, SourceType } from 'src/app/@core/mock/originSource';
+import { ApiService } from '../api.service';
 import { ModalFormContentComponent } from './modal-form-content/modal-form-content.component';
 
 @Component({
@@ -68,19 +69,21 @@ export class ListModalFormsComponent implements OnInit {
       width: '150px',
     },
   ];
-  constructor(private dialogService: DialogService) {}
+  constructor(private dialogService: DialogService, private api: ApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.api.testData();
+  }
 
   edit(rowitem) {
     console.log('rowitem', rowitem);
     const results = this.dialogService.open({
       id: 'form-dialog',
-      maxHeight: '300px',
-      title: 'title',
+      width: '700px',
+      maxHeight: '500px',
       content: ModalFormContentComponent,
-      backdropCloseable: true,
-      dialogtype: '',
+      backdropCloseable: false,
+      title: '编辑',
       onClose: () => {},
       buttons: [
         {
