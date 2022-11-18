@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CellSelectedEventArg, DialogService, RowSelectedEventArg, TableWidthConfig } from 'ng-devui';
+import { DialogService, TableWidthConfig } from 'ng-devui';
 import { originSource, SourceType } from 'src/app/@core/mock/originSource';
 import { ApiService } from '../api.service';
-import { ModalFormContentComponent } from './modal-form-content/modal-form-content.component';
+import { ModalFormColumnContentComponent } from './modal-form-content/modal-form-content.component';
 
 @Component({
-  selector: 'app-list-modal-forms',
-  templateUrl: './list-modal-forms.component.html',
-  styleUrls: ['./list-modal-forms.component.scss'],
+  selector: 'app-list-modal-forms-dclumn',
+  templateUrl: './list-modal-forms-dclumn.component.html',
+  styleUrls: ['./list-modal-forms-dclumn.component.scss'],
 })
-export class ListModalFormsComponent implements OnInit {
+export class ListModalFormsDclumnComponent implements OnInit {
+  limit = 100 * 12 * 30 * 24 * 60 * 60; // three years
+
   basicDataSource: Array<SourceType> = JSON.parse(JSON.stringify(originSource.list));
   dataTableOptions = {
     columns: [
@@ -80,7 +82,7 @@ export class ListModalFormsComponent implements OnInit {
       id: 'form-dialog',
       width: '700px',
       maxHeight: '500px',
-      content: ModalFormContentComponent,
+      content: ModalFormColumnContentComponent,
       backdropCloseable: false,
       title: type,
       onClose: () => {},

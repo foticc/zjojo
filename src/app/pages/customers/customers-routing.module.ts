@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomersComponent } from './customers.component';
 import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
+import { ListModalFormsDclumnComponent } from './list-modal-forms-dclumn/list-modal-forms-dclumn.component';
 import { ListModalFormsComponent } from './list-modal-forms/list-modal-forms.component';
 import { MultipleBlockComponent } from './multiple-block/multiple-block.component';
 import { StyleListComponent } from './style-list/style-list.component';
@@ -52,6 +53,13 @@ const routes: Routes = [
       {
         path: 'list-modal',
         component: ListModalFormsComponent,
+        data: {
+          title: '测试',
+        },
+      },
+      {
+        path: 'list-modal-column',
+        component: ListModalFormsDclumnComponent,
         data: {
           title: '测试',
         },

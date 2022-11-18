@@ -7,7 +7,7 @@ import { delay, Observable, of } from 'rxjs';
   templateUrl: './modal-form-content.component.html',
   styleUrls: ['./modal-form-content.component.scss'],
 })
-export class ModalFormContentComponent implements OnInit, OnDestroy {
+export class ModalFormColumnContentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log('this.data', this.data);
   }
@@ -94,5 +94,4 @@ export class ModalFormContentComponent implements OnInit, OnDestroy {
       // error tip
     }
   }
-  
 }

@@ -50,6 +50,12 @@
                   </td>
                   <td>
                     <div class="btn-group over-flow-ellipsis">
+                      <d-button
+                        icon="icon-classroom-post-answers-large"
+                        bsStyle="text-dark"
+                        title="edit"
+                        (click)="openItem(rowItem)"
+                      ></d-button>
                       <d-button icon="icon-edit" bsStyle="text-dark" title="edit" (click)="edit(rowItem)"></d-button>
                       <d-button icon="icon-delete" bsStyle="text-dark" title="delete"></d-button>
                     </div>

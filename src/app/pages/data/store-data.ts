@@ -28,6 +28,10 @@ const menuData: Array<MenuItem> = [
         title: '测试',
         link: '/pages/customers/list-modal',
       },
+      {
+        title: 'd-column',
+        link: '/pages/customers/list-modal-column',
+      },
     ],
     link: '/pages/customers',
     menuIcon: 'icon icon-add-bug', // 你可以查询 DevUI 图标库选择一个适合的图标进行替换

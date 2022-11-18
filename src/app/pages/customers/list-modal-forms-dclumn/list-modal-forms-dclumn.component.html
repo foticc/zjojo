@@ -1,0 +1,156 @@
+<div class="da-list-wrap">
+  <div class="da-content-wrapper">
+    <da-layout-row [daGutter]="[24, 24]">
+      <da-col-item [daSpan]="24" [daXs]="24">
+        <div class="da-list-container">
+          <div class="da-list-header">
+            <div class="da-header-left">
+              <div class="da-header-item">
+                <div class="da-header-item-label">Border Type:</div>
+                <input dTextInput />
+              </div>
+              <div class="da-header-item">
+                <div class="da-header-item-label">Size:</div>
+                <input dTextInput />
+              </div>
+              <div class="da-header-item">
+                <div class="da-header-item-label">Layout:</div>
+                <input dTextInput />
+              </div>
+            </div>
+            <div class="header-right">
+              <d-button>Reset</d-button>
+            </div>
+          </div>
+          <d-data-table
+            [dataSource]="basicDataSource"
+            [scrollable]="true"
+            [tableWidthConfig]="tableWidthConfig"
+            [tableOverflowType]="'overlay'"
+            [fixHeader]="true"
+            [scrollable]="true"
+            tableHeight="550px"
+            [containFixHeaderHeight]="true"
+          >
+            <d-column field="$index" header="#" [width]="'10%'"></d-column>
+            <d-column field="avatar" header="Avatar" [sortable]="true" [width]="'10%'" [filterable]="true" [closeFilterWhenScroll]="true">
+              <d-cell>
+                <ng-template let-rowItem="rowItem">
+                  <d-avatar [name]="rowItem.avatar"></d-avatar>
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column
+              field="firstName"
+              header="First Name"
+              [sortable]="true"
+              [width]="'10%'"
+              [filterable]="true"
+              [closeFilterWhenScroll]="true"
+            ></d-column>
+            <d-column
+              field="gender"
+              header="Gender"
+              [editable]="true"
+              [sortable]="true"
+              [width]="'10%'"
+              [filterable]="true"
+              [closeFilterWhenScroll]="true"
+            >
+              <d-cell-edit>
+                <ng-template let-rowItem="rowItem" let-column="column">
+                  <div class="customized-editor edit-padding-fix">
+                    <d-select [options]="['男', '女']" [isSearch]="false" [filterKey]="'label'" [autoFocus]="true" [toggleOnFocus]="true">
+                    </d-select>
+                  </div>
+                </ng-template>
+              </d-cell-edit>
+            </d-column>
+            <d-column
+              field="dob"
+              header="Date of birth"
+              [sortable]="true"
+              [width]="'20%'"
+              [filterable]="true"
+              [closeFilterWhenScroll]="true"
+              [editable]="true"
+              [extraOptions]="{ editableTip: 'btn' }"
+            >
+              <d-cell-edit>
+                <ng-template let-rowItem="rowItem" let-column="column">
+                  <form class="form-inline edit-padding-fix">
+                    <div class="devui-form-group">
+                      <div class="devui-input-group devui-dropdown-origin">
+                        <input
+                          class="devui-form-control search"
+                          [name]="'dob'"
+                          [(ngModel)]="rowItem.dob"
+                          dDatepicker
+                          appendToBody
+                          [dateFormat]="'yyyy-MM-dd'"
+                          #datePicker="datepicker"
+                          [showTime]="true"
+                          [autoOpen]="true"
+                        />
+                        <div class="devui-input-group-addon" (click)="datePicker.toggle()">
+                          <i class="icon icon-calendar"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </ng-template>
+              </d-cell-edit>
+            </d-column>
+            <d-column
+              field="$index"
+              header="Date of birth RelativeTime "
+              [sortable]="true"
+              [width]="'10%'"
+              [filterable]="true"
+              [closeFilterWhenScroll]="true"
+            >
+              <d-cell>
+                <ng-template let-rowItem="rowItem">
+                  <div>{{ rowItem.dob | dRelativeTime: limit | async }}</div>
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column
+              field="description"
+              header="Description"
+              [sortable]="true"
+              [width]="'30%'"
+              [filterable]="true"
+              [closeFilterWhenScroll]="true"
+            ></d-column>
+            <d-column field="$index" header="Action" [width]="'10%'">
+              <d-cell>
+                <ng-template let-rowItem="rowItem">
+                  <div class="btn-group over-flow-ellipsis">
+                    <d-button
+                      icon="icon-classroom-post-answers-large"
+                      bsStyle="text-dark"
+                      title="edit"
+                      (click)="openItem(rowItem)"
+                    ></d-button>
+                    <d-button icon="icon-edit" bsStyle="text-dark" title="edit" (click)="edit(rowItem)"></d-button>
+                    <d-button icon="icon-delete" bsStyle="text-dark" title="delete"></d-button>
+                  </div>
+                </ng-template>
+              </d-cell>
+            </d-column>
+          </d-data-table>
+          <d-pagination
+            [size]="'sm'"
+            [canViewTotal]="true"
+            [canJumpPage]="true"
+            [canChangePageSize]="true"
+            [total]="100"
+            [pageSize]="10"
+            [pageIndex]="1"
+          ></d-pagination>
+        </div>
+      </da-col-item>
+    </da-layout-row>
+  </div>
+</div>
