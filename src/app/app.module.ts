@@ -13,6 +13,7 @@ import { RouteCacheService } from './pages/service/route-cache.service';
 import { CacheResuseStrategy } from './pages/cache-reuse-strategy';
 import { RouteReuseStrategy } from '@angular/router';
 import { VisitedService } from './pages/service/visited.service';
+import { httpInterceptorProviders } from './http';
 
 class I18NLoader implements TranslateLoader {
   getTranslation(lang: 'zh-cn' | 'en-us'): Observable<Object> {
@@ -42,7 +43,8 @@ class I18NLoader implements TranslateLoader {
     {
       provide: RouteReuseStrategy,
       useClass: CacheResuseStrategy,
-    }
+    },
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent],
 })
