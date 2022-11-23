@@ -40,10 +40,10 @@ class I18NLoader implements TranslateLoader {
   providers: [
     RouteCacheService,
     VisitedService,
-    {
-      provide: RouteReuseStrategy,
-      useClass: CacheResuseStrategy,
-    },
+    // {
+    //   provide: RouteReuseStrategy,
+    //   useClass: CacheResuseStrategy,
+    // },
     httpInterceptorProviders,
   ],
   bootstrap: [AppComponent],

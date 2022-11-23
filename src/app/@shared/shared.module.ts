@@ -31,6 +31,7 @@ import {
   SelectModule,
   CheckBoxModule,
   DatepickerModule,
+  LoadingModule,
 } from 'ng-devui';
 import { RelativeTimeModule } from 'ng-devui/relative-time';
 import { I18nModule } from 'ng-devui/i18n';
@@ -75,6 +76,7 @@ const DEVUI_MODULES = [
   CheckBoxModule,
   DatepickerModule,
   RelativeTimeModule,
+  LoadingModule,
 ];
 const COMPONENTS = [HeaderComponent, FooterComponent, NavbarComponent, PersonalizeComponent];
 @NgModule({

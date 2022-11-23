@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CellSelectedEventArg, DialogService, RowSelectedEventArg, TableWidthConfig } from 'ng-devui';
 import { originSource, SourceType } from 'src/app/@core/mock/originSource';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../../api/api.service';
 import { ModalFormContentComponent } from './modal-form-content/modal-form-content.component';
 
 @Component({
@@ -72,7 +72,7 @@ export class ListModalFormsComponent implements OnInit {
   constructor(private dialogService: DialogService, private api: ApiService) {}
 
   ngOnInit(): void {
-    this.api.testData();
+    this.api.permissionPage();
   }
 
   private openDialog(data: any, type: string) {

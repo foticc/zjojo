@@ -5,6 +5,7 @@ import { CustomersComponent } from './customers.component';
 import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
 import { ListModalFormsDclumnComponent } from './list-modal-forms-dclumn/list-modal-forms-dclumn.component';
 import { ListModalFormsComponent } from './list-modal-forms/list-modal-forms.component';
+import { ListNetworkDemoComponent } from './list-network-demo/list-network-demo.component';
 import { MultipleBlockComponent } from './multiple-block/multiple-block.component';
 import { StyleListComponent } from './style-list/style-list.component';
 import { TreeListComponent } from './tree-list/tree-list.component';
@@ -62,6 +63,13 @@ const routes: Routes = [
         component: ListModalFormsDclumnComponent,
         data: {
           title: '测试',
+        },
+      },
+      {
+        path: 'list-network-column',
+        component: ListNetworkDemoComponent,
+        data: {
+          title: '测试哈哈',
         },
       },
       { path: '', redirectTo: 'customer-list', pathMatch: 'full' },

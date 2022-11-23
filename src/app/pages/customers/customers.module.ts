@@ -14,6 +14,8 @@ import { ListModalFormsComponent } from './list-modal-forms/list-modal-forms.com
 import { ModalFormContentComponent } from './list-modal-forms/modal-form-content/modal-form-content.component';
 import { ListModalFormsDclumnComponent } from './list-modal-forms-dclumn/list-modal-forms-dclumn.component';
 import { ModalFormColumnContentComponent } from './list-modal-forms-dclumn/modal-form-content/modal-form-content.component';
+import { ListNetworkDemoComponent } from './list-network-demo/list-network-demo.component';
+import { ListNetworkDemoContentComponent } from './list-network-demo/list-network-demo-content/list-network-demo-content.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ModalFormColumnContentComponent } from './list-modal-forms-dclumn/modal
     ModalFormContentComponent,
     ListModalFormsDclumnComponent,
     ModalFormColumnContentComponent,
+    ListNetworkDemoComponent,
+    ListNetworkDemoContentComponent,
   ],
   imports: [SharedModule, DynamicFormsModule, CustomersRoutingModule],
 })

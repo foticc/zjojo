@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService, TableWidthConfig } from 'ng-devui';
 import { Observable } from 'rxjs';
 import { originSource, SourceType } from 'src/app/@core/mock/originSource';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../../api/api.service';
 import { ModalFormColumnContentComponent } from './modal-form-content/modal-form-content.component';
 
 @Component({
@@ -17,9 +17,7 @@ export class ListModalFormsDclumnComponent implements OnInit {
 
   constructor(private dialogService: DialogService, private api: ApiService) {}
 
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 
   private openDialog(data: any, type: string) {
     const results = this.dialogService.open({
