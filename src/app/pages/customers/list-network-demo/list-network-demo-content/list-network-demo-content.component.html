@@ -18,7 +18,7 @@
           autocomplete="off"
           name="name"
           placeholder="Name"
-          [(ngModel)]="formData.name"
+          [(ngModel)]="formData.permissionsName"
           [disabled]="isEdit"
           [dValidateRules]="{
             validators: [{ required: true }]
@@ -34,7 +34,7 @@
           autocomplete="off"
           name="path"
           placeholder="Name"
-          [(ngModel)]="formData.path"
+          [(ngModel)]="formData.resource"
           [disabled]="isEdit"
           [dValidateRules]="{
             validators: [{ required: true }]
@@ -49,28 +49,30 @@
           dTextarea
           resize="vertical"
           autocomplete="off"
-          name="desc"
+          name="description"
           placeholder="Description"
-          [(ngModel)]="formData.desc"
+          [(ngModel)]="formData.description"
           [disabled]="isEdit"
           [dValidateRules]="[{ maxlength: 256 }]"
         ></textarea>
       </d-form-control>
     </d-form-item>
 
-    <d-form-operation>
-      <d-button
-        dLoading
-        class="mr-element-spacing"
-        [title]="projectForm.errorMessage || ''"
-        circled="true"
-        style="margin-right: 8px"
-        [showLoading]="projectForm.pending"
-        dFormSubmit
-        [dFormSubmitData]="'submit-button'"
-      >
-        Submit
-      </d-button>
-    </d-form-operation>
+    <ng-template [ngIf]="!isEdit">
+      <d-form-operation>
+        <d-button
+          dLoading
+          class="mr-element-spacing"
+          [title]="projectForm.errorMessage || ''"
+          circled="true"
+          style="margin-right: 8px"
+          [showLoading]="projectForm.pending"
+          dFormSubmit
+          [dFormSubmitData]="formData"
+        >
+          Submit
+        </d-button>
+      </d-form-operation>
+    </ng-template>
   </form>
 </div>

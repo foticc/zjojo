@@ -6,20 +6,19 @@
           <div class="da-list-header">
             <div class="da-header-left">
               <div class="da-header-item">
-                <div class="da-header-item-label">Border Type:</div>
-                <input dTextInput />
-              </div>
-              <div class="da-header-item">
-                <div class="da-header-item-label">Size:</div>
-                <input dTextInput />
-              </div>
-              <div class="da-header-item">
-                <div class="da-header-item-label">Layout:</div>
-                <input dTextInput />
+                <div class="da-header-item">
+                  <div class="da-header-item-label">Path:</div>
+                  <input dTextInput [(ngModel)]="queryCondition.path" />
+                </div>
+                <div class="da-header-item">
+                  <d-button icon="icon-search" bsStyle="text" bsSize="xs" title="add" (click)="reset()"></d-button>
+                </div>
               </div>
             </div>
             <div class="header-right">
-              <d-button (click)="reset()">Reset</d-button>
+              <div class="da-header-item">
+                <d-button icon="icon-add" (click)="add()">Add</d-button>
+              </div>
             </div>
           </div>
           <d-data-table
@@ -39,10 +38,17 @@
             [style.height.px]="550"
           >
             <d-column field="$index" header="#" [width]="'10%'"></d-column>
-            <d-column field="name" header="Name" [width]="'10%'" [sortable]="true" [filterable]="true" [closeFilterWhenScroll]="true">
+            <d-column
+              field="permissionsName"
+              header="Name"
+              [width]="'10%'"
+              [sortable]="true"
+              [filterable]="true"
+              [closeFilterWhenScroll]="true"
+            >
             </d-column>
-            <d-column field="path" header="Path" [width]="'10%'" [closeFilterWhenScroll]="true"></d-column>
-            <d-column field="desc" header="Desc" [width]="'10%'" [closeFilterWhenScroll]="true"> </d-column>
+            <d-column field="resource" header="Path" [width]="'10%'" [closeFilterWhenScroll]="true"></d-column>
+            <d-column field="description" header="Desc" [width]="'10%'" [closeFilterWhenScroll]="true"> </d-column>
 
             <d-column field="$index" header="Action" [width]="'10%'">
               <d-cell>
@@ -52,10 +58,10 @@
                       icon="icon-classroom-post-answers-large"
                       bsStyle="text-dark"
                       title="查看"
-                      (click)="openItem(rowItem)"
+                      (btnClick)="openItem(rowItem)"
                     ></d-button>
-                    <d-button icon="icon-edit" bsStyle="text-dark" title="编辑" (click)="editItem(rowItem)"></d-button>
-                    <d-button icon="icon-delete" bsStyle="text-dark" title="删除"></d-button>
+                    <d-button icon="icon-edit" bsStyle="text-dark" title="编辑" (btnClick)="editItem(rowItem)"></d-button>
+                    <d-button icon="icon-delete" bsStyle="text" title="删除" (btnClick)="delItem(rowItem)"></d-button>
                   </div>
                 </ng-template>
               </d-cell>

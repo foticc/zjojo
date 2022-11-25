@@ -9,12 +9,13 @@ import { CommonResult, DataDomainPage } from './common-defined';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  permissionPage(page = 1, size = 10) {
+  permissionPage(page = 0, size = 10, query?) {
     return this.http
-      .get('/api/m1/1402548-0-default/permission/page', {
+      .get('/api/permission/page', {
         params: {
           page,
           size,
+          ...query,
         },
       })
       .pipe(
@@ -22,5 +23,21 @@ export class ApiService {
           return (m as CommonResult).data as DataDomainPage;
         })
       );
+  }
+
+  save(data) {
+    return this.http.post('/api/permission/save', data);
+  }
+
+  delete(id) {
+    return this.http.delete('/api/permission/del', {
+      params: {
+        id,
+      },
+    });
+  }
+
+  update(data) {
+    return this.http.put('/api/permission/update', data);
   }
 }

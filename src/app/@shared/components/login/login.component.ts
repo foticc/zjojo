@@ -2,9 +2,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 import { I18nService } from 'ng-devui/i18n';
-import { Subject } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
 import { DValidateRules } from 'ng-devui';
-import { takeUntil } from 'rxjs/operators';
+import { catchError, takeUntil } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { PersonalizeService } from 'src/app/@core/services/personalize.service';
@@ -110,21 +110,18 @@ export class LoginComponent implements OnInit {
   onClick(tabId: string | number) {
     switch (tabId) {
       case 'tab1':
-        this.authService.login(this.formData.userAccount, this.formData.userAccountPassword).subscribe(
-          (res) => {
+        this.authService
+          .login(this.formData.userAccount, this.formData.userAccountPassword)
+          // .pipe(
+          //   catchError((error) => {
+          //     return throwError(() => new Error(error));
+          //     // throw 're-throw error'; // 用 throw 也可以
+          //   })
+          // )
+          .subscribe((res) => {
             this.authService.setSession(res);
             this.router.navigate(['/']);
-          },
-          (error) => {
-            this.toastMessage = [
-              {
-                severity: 'error',
-                summary: this.i18nValues['noticeMessage']['summary'],
-                content: this.i18nValues['noticeMessage']['accountContent'],
-              },
-            ];
-          }
-        );
+          });
         break;
       case 'tab2':
         this.authService.login(this.formData.userEmail, this.formData.userEmailPassword).subscribe(

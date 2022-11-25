@@ -3,14 +3,23 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 
 import { catchError, EMPTY, Observable, throwError } from 'rxjs';
 import { ToastService } from 'ng-devui';
+import { AuthService } from '../@core/services/auth.service';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private toastService: ToastService) {}
+  constructor(private toastService: ToastService, private auth: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
+    // Get the auth token from the service.
+    const authToken = this.auth.getAuthorizationToken();
+    let authReq = req;
+    if (authToken) {
+      authReq = req.clone({
+        headers: req.headers.set('x-token', authToken as string),
+      });
+    }
+    return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         this.toastService.open({
           value: [{ severity: 'error', content: error.message, life: 5000 }],

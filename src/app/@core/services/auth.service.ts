@@ -47,20 +47,21 @@ export class AuthService {
     // }
     // return throwError('Please make sure you have input correct account and password');
     return this.request
-      .post('/api/m1/1402548-0-default/auth/login', {
+      .post('/api/login', {
         username: account,
         password,
       })
       .pipe(
         map((m) => {
           return {
-            account: m['info']['name'],
+            account: m['data']['info']['username'],
             gender: 'male',
-            userName: m['token'],
+            userName: m['data']['info']['username'],
             password: 'devuiadmin',
             phoneNumber: '19988888888',
             email: 'admin@devui.com',
             userId: '300',
+            token: m['data']['token'],
           };
         })
       );
@@ -73,9 +74,18 @@ export class AuthService {
   }
 
   setSession(userInfo: User) {
-    localStorage.setItem('id_token', '123456');
+    localStorage.setItem('id_token', userInfo.token);
     localStorage.setItem('userinfo', JSON.stringify(userInfo));
-    localStorage.setItem('expires_at', '120');
+    localStorage.setItem('expires_at', '1200');
+  }
+
+  getSession(): User {
+    const userinfo_str = localStorage.getItem('userinfo');
+    return JSON.parse(userinfo_str) as User;
+  }
+
+  getAuthorizationToken(): string {
+    return localStorage.getItem('id_token');
   }
 
   isUserLoggedIn() {

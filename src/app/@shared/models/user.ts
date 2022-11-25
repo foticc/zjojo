@@ -3,4 +3,5 @@ export interface User {
   gender: string;
   email: string;
   phoneNumber: string;
+  token?: string;
 }
