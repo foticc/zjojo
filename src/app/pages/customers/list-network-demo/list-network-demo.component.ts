@@ -30,8 +30,15 @@ export class ListNetworkDemoComponent implements OnInit {
     this.init();
   }
 
+  public get queryParams(): queryCondition {
+    const data = this.queryCondition;
+    return Object.keys(data)
+      .filter((key) => data[key] !== null && data[key] !== undefined && data[key] !== '')
+      .reduce((acc, key) => ({ ...acc, [key]: data[key] }), {});
+  }
+
   private init() {
-    this.loading = this.api.permissionPage(this.pageIndex, this.pageSize, this.queryCondition).subscribe((v) => {
+    this.loading = this.api.permissionPage(this.pageIndex, this.pageSize, this.queryParams).subscribe((v) => {
       this.total = v.totalElements;
       this.content = v.content;
     });

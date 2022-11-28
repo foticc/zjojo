@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 import { I18nService } from 'ng-devui/i18n';
 import { Subject, throwError } from 'rxjs';
-import { DValidateRules } from 'ng-devui';
+import { DValidateRules, LoadingType } from 'ng-devui';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/@core/services/auth.service';
@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
   tabItems: any;
 
   i18nValues: any;
+
+  loading: LoadingType;
 
   formData = {
     userAccount: 'admin',
@@ -110,7 +112,7 @@ export class LoginComponent implements OnInit {
   onClick(tabId: string | number) {
     switch (tabId) {
       case 'tab1':
-        this.authService
+        this.loading = this.authService
           .login(this.formData.userAccount, this.formData.userAccountPassword)
           // .pipe(
           //   catchError((error) => {

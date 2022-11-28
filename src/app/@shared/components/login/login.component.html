@@ -1,4 +1,4 @@
-<div class="da-login">
+<div class="da-login" dLoading [loading]="loading" [backdrop]="true" [message]="'One moment please...'" [style.height.vh]="100">
   <d-toast [value]="toastMessage"></d-toast>
   <div class="da-login-form">
     <div class="da-login-logo-wrapper">
@@ -9,7 +9,7 @@
         <span class="da-text">DevUI</span>
       </div>
       <span class="da-coperation">
-        {{'loginPage.coperation' | translate}}
+        {{ 'loginPage.coperation' | translate }}
       </span>
     </div>
     <div class="da-login-ways">
@@ -27,9 +27,7 @@
       </ng-container>
     </div>
     <div class="da-other">
-      <span class="devui-form-span">
-        {{ 'loginPage.other' | translate }}:
-      </span>
+      <span class="devui-form-span"> {{ 'loginPage.other' | translate }}: </span>
       <i (click)="handleAuth('github')">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px">
           <path
@@ -41,13 +39,7 @@
     </div>
   </div>
 
-  <div
-    class="da-language-wrapper"
-    dDropDown
-    [trigger]="'hover'"
-    dDropDownToggle
-    appendToBody
-  >
+  <div class="da-language-wrapper" dDropDown [trigger]="'hover'" dDropDownToggle appendToBody>
     <!-- TODO: svg替换为图标 -->
     <svg width="16px" height="16px" viewBox="0 0 16 16">
       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -56,12 +48,7 @@
         ></path>
       </g>
     </svg>
-    <ul
-      dDropDownMenu
-      class="devui-dropdown-menu devui-scrollbar"
-      role="menu"
-      style="width: 120px"
-    >
+    <ul dDropDownMenu class="devui-dropdown-menu devui-scrollbar" role="menu" style="width: 120px">
       <li
         *ngFor="let item of languages"
         role="menuitem"
@@ -114,7 +101,7 @@
       <div class="da-auto-login">
         <d-toggle [checked]="true"></d-toggle>
         <span class="da-auto-login-text" style="margin-left: 8px">
-          {{'loginPage.autoLogin' | translate}}
+          {{ 'loginPage.autoLogin' | translate }}
         </span>
       </div>
       <span
@@ -122,7 +109,7 @@
       >
     </div>
     <button class="da-submit-button" dFormSubmit>
-       {{ 'loginPage.submit' | translate }}
+      {{ 'loginPage.submit' | translate }}
     </button>
   </form>
 </ng-template>
@@ -161,7 +148,7 @@
       <div class="da-auto-login">
         <d-toggle [checked]="true"></d-toggle>
         <span class="da-auto-login-text" style="margin-left: 8px">
-          {{'loginPage.autoLogin' | translate}}
+          {{ 'loginPage.autoLogin' | translate }}
         </span>
       </div>
       <span
@@ -169,14 +156,11 @@
       >
     </div>
     <button class="da-submit-button" dFormSubmit>
-       {{ 'loginPage.submit' | translate }}
+      {{ 'loginPage.submit' | translate }}
     </button>
   </form>
 </ng-template>
 
 <ng-template #suffixTemplate>
-  <i
-    [class]="showPassword ? 'icon icon-preview' : 'icon icon-preview-forbidden'"
-    (click)="showPassword = !showPassword"
-  ></i>
+  <i [class]="showPassword ? 'icon icon-preview' : 'icon icon-preview-forbidden'" (click)="showPassword = !showPassword"></i>
 </ng-template>
