@@ -16,6 +16,8 @@ import { ListModalFormsDclumnComponent } from './list-modal-forms-dclumn/list-mo
 import { ModalFormColumnContentComponent } from './list-modal-forms-dclumn/modal-form-content/modal-form-content.component';
 import { ListNetworkDemoComponent } from './list-network-demo/list-network-demo.component';
 import { ListNetworkDemoContentComponent } from './list-network-demo/list-network-demo-content/list-network-demo-content.component';
+import { ListUserComponent } from './list-user/list-user.component';
+import { ListUserContentComponent } from './list-user/list-user-content/list-user-content.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { ListNetworkDemoContentComponent } from './list-network-demo/list-networ
     ModalFormColumnContentComponent,
     ListNetworkDemoComponent,
     ListNetworkDemoContentComponent,
+    ListUserComponent,
+    ListUserContentComponent,
   ],
   imports: [SharedModule, DynamicFormsModule, CustomersRoutingModule],
 })

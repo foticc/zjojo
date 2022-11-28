@@ -36,6 +36,10 @@ const menuData: Array<MenuItem> = [
         title: 'net',
         link: '/pages/customers/list-network-column',
       },
+      {
+        title: 'User',
+        link: '/pages/customers/list-user',
+      },
     ],
     link: '/pages/customers',
     menuIcon: 'icon icon-add-bug', // 你可以查询 DevUI 图标库选择一个适合的图标进行替换

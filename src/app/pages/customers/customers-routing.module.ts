@@ -6,6 +6,7 @@ import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
 import { ListModalFormsDclumnComponent } from './list-modal-forms-dclumn/list-modal-forms-dclumn.component';
 import { ListModalFormsComponent } from './list-modal-forms/list-modal-forms.component';
 import { ListNetworkDemoComponent } from './list-network-demo/list-network-demo.component';
+import { ListUserComponent } from './list-user/list-user.component';
 import { MultipleBlockComponent } from './multiple-block/multiple-block.component';
 import { StyleListComponent } from './style-list/style-list.component';
 import { TreeListComponent } from './tree-list/tree-list.component';
@@ -70,6 +71,13 @@ const routes: Routes = [
         component: ListNetworkDemoComponent,
         data: {
           title: '测试哈哈',
+        },
+      },
+      {
+        path: 'list-user',
+        component: ListUserComponent,
+        data: {
+          title: '用户',
         },
       },
       { path: '', redirectTo: 'customer-list', pathMatch: 'full' },
