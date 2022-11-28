@@ -18,6 +18,8 @@ import { ListNetworkDemoComponent } from './list-network-demo/list-network-demo.
 import { ListNetworkDemoContentComponent } from './list-network-demo/list-network-demo-content/list-network-demo-content.component';
 import { ListUserComponent } from './list-user/list-user.component';
 import { ListUserContentComponent } from './list-user/list-user-content/list-user-content.component';
+import { ListRoleComponent } from './list-role/list-role.component';
+import { ListRoleContentComponent } from './list-role/list-role-content/list-role-content.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ListUserContentComponent } from './list-user/list-user-content/list-use
     ListNetworkDemoContentComponent,
     ListUserComponent,
     ListUserContentComponent,
+    ListRoleComponent,
+    ListRoleContentComponent,
   ],
   imports: [SharedModule, DynamicFormsModule, CustomersRoutingModule],
 })
