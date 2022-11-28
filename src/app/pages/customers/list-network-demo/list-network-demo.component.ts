@@ -5,6 +5,10 @@ import { DIALOG_PAGE_TYPE } from '../../data/page-field-config';
 import { SimpleDialogService } from '../../service/simple-dialog.service';
 import { ListNetworkDemoContentComponent } from './list-network-demo-content/list-network-demo-content.component';
 
+interface queryCondition {
+  path?: string;
+}
+
 @Component({
   selector: 'app-list-network-demo',
   templateUrl: './list-network-demo.component.html',
@@ -16,9 +20,7 @@ export class ListNetworkDemoComponent implements OnInit {
   pageIndex = 0;
   pageSize = 10;
   sortedColumn: SortEventArg[] = [];
-  queryCondition = {
-    path: null,
-  };
+  queryCondition: queryCondition = {};
 
   loading: LoadingType;
 
