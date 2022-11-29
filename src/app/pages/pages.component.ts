@@ -14,7 +14,7 @@ import { ActivationEnd, NavigationEnd, NavigationStart, Router, RoutesRecognized
 import * as NProgress from 'nprogress';
 import { VisitedService } from './service/visited.service';
 import { ThisReceiver } from '@angular/compiler';
-import { menuData } from './data/store-data';
+import { menuData } from './data/sider-route-data';
 
 @Component({
   selector: 'da-pages',
