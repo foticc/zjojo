@@ -1,6 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { TableWidthConfig } from 'ng-devui/data-table';
-import { originSource, SourceType } from 'src/app/@core/mock/originSource';
+import { originSource, SourceType, originSourceGen } from 'src/app/@core/mock/originSource';
 
 @Component({
   selector: 'app-customer-list',
@@ -9,6 +9,10 @@ import { originSource, SourceType } from 'src/app/@core/mock/originSource';
 })
 export class CustomerListComponent implements OnInit {
   basicDataSource: Array<SourceType> = JSON.parse(JSON.stringify(originSource.list));
+  total: number = 10000;
+  content: Array<any>;
+  pageIndex = 1;
+  pageSize = 10;
   dataTableOptions = {
     columns: [
       {
@@ -68,5 +72,21 @@ export class CustomerListComponent implements OnInit {
   ];
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.init();
+  }
+
+  private init() {
+    const data = originSourceGen();
+    this.basicDataSource = JSON.parse(JSON.stringify(data.list));
+  }
+
+  pageIndexChange(pageIndex) {
+    this.pageIndex = pageIndex;
+    this.init();
+  }
+  pageSizeChange(pageSize) {
+    this.pageSize = pageSize;
+    this.init();
+  }
 }

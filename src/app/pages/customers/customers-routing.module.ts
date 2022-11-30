@@ -9,6 +9,7 @@ import { ListNetworkDemoComponent } from './list-network-demo/list-network-demo.
 import { ListRoleComponent } from './list-role/list-role.component';
 import { ListUserComponent } from './list-user/list-user.component';
 import { MultipleBlockComponent } from './multiple-block/multiple-block.component';
+import { RolePermissionComponent } from './role-permission/role-permission.component';
 import { StyleListComponent } from './style-list/style-list.component';
 import { TreeListComponent } from './tree-list/tree-list.component';
 
@@ -84,6 +85,13 @@ const routes: Routes = [
       {
         path: 'list-role',
         component: ListRoleComponent,
+        data: {
+          title: '角色',
+        },
+      },
+      {
+        path: 'role-permission',
+        component: RolePermissionComponent,
         data: {
           title: '角色',
         },

@@ -1,0 +1,40 @@
+<div class="">
+  <d-data-table
+    [dataSource]="roleContent"
+    [lazy]="true"
+    [scrollable]="true"
+    (loadMore)="loadMore($event)"
+    [checkable]="true"
+    [headerCheckDisabled]="false"
+    [headerCheckVisible]="false"
+    [tableOverflowType]="'overlay'"
+    [borderType]="'borderless'"
+    [fixHeader]="true"
+    tableHeight="620px"
+    [containFixHeaderHeight]="true"
+  >
+    <thead dTableHead>
+      <tr dTableRow>
+        <th dHeadCell>
+          <d-search [noBorder]="true" (searchFn)="onSearch($event)"></d-search>
+        </th>
+      </tr>
+    </thead>
+    <d-column field="roleName" header="" [sortable]="true" [width]="'10%'" [filterable]="true" [closeFilterWhenScroll]="true">
+      <d-cell>
+        <ng-template let-rowItem="rowItem">
+          <div
+            dPopover
+            [trigger]="'hover'"
+            [controlled]="true"
+            [mouseEnterDelay]="500"
+            [position]="'top-right'"
+            [content]="rowItem.roleWeight"
+          >
+            {{ rowItem.roleName }}
+          </div>
+        </ng-template>
+      </d-cell>
+    </d-column>
+  </d-data-table>
+</div>

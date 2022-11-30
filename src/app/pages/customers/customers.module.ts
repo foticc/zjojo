@@ -20,6 +20,8 @@ import { ListUserComponent } from './list-user/list-user.component';
 import { ListUserContentComponent } from './list-user/list-user-content/list-user-content.component';
 import { ListRoleComponent } from './list-role/list-role.component';
 import { ListRoleContentComponent } from './list-role/list-role-content/list-role-content.component';
+import { RolePermissionComponent } from './role-permission/role-permission.component';
+import { RolePanelComponent } from './role-permission/role-panel/role-panel.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ListRoleContentComponent } from './list-role/list-role-content/list-rol
     ListUserContentComponent,
     ListRoleComponent,
     ListRoleContentComponent,
+    RolePermissionComponent,
+    RolePanelComponent,
   ],
   imports: [SharedModule, DynamicFormsModule, CustomersRoutingModule],
 })

@@ -28,6 +28,22 @@ export const originSource = Mock.mock({
   ],
 });
 
+export const originSourceGen = function () {
+  return Mock.mock({
+    'list|10': [
+      {
+        'id|+1': 1,
+        firstName: '@city',
+        lastName: '@cname',
+        dob: '@date',
+        gender: '@cword(男女)',
+        description: '@cparagraph(5,10)',
+        avatar: '@image',
+      },
+    ],
+  });
+};
+
 export const editableOriginSource = [
   {
     id: 1,

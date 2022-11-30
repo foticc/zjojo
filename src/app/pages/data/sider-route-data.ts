@@ -44,6 +44,10 @@ const menuData: Array<MenuItem> = [
         title: 'Role',
         link: '/pages/customers/list-role',
       },
+      {
+        title: 'Role-Bind',
+        link: '/pages/customers/role-permission',
+      },
     ],
     link: '/pages/customers',
     menuIcon: 'icon icon-add-bug', // 你可以查询 DevUI 图标库选择一个适合的图标进行替换

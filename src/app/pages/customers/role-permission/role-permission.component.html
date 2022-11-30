@@ -1,0 +1,91 @@
+<div class="da-list-wrap">
+  <div class="da-content-wrapper">
+    <da-layout-row [daGutter]="[24, 24]">
+      <da-col-item [daSpan]="2" [daXs]="4">
+        <div class="da-list-container">
+          <app-role-panel></app-role-panel>
+        </div>
+      </da-col-item>
+      <da-col-item [daSpan]="22" [daXs]="20">
+        <div class="da-list-container">
+          <div class="da-list-header">
+            <div class="da-header-left">
+              <div class="da-header-item">
+                <div class="da-header-item">
+                  <div class="da-header-item-label">Path:</div>
+                  <input dTextInput [(ngModel)]="queryCondition.path" />
+                </div>
+                <div class="da-header-item">
+                  <d-button icon="icon-search" bsStyle="text" bsSize="xs" title="add" (click)="reset()"></d-button>
+                </div>
+              </div>
+            </div>
+            <div class="header-right">
+              <div class="da-header-item">
+                <d-button icon="icon-add" (click)="add()">Add</d-button>
+              </div>
+            </div>
+          </div>
+          <d-data-table
+            [dataSource]="content"
+            [scrollable]="true"
+            [tableOverflowType]="'overlay'"
+            [(multiSort)]="sortedColumn"
+            (multiSortChange)="sortChange($event)"
+            [headerBg]="false"
+            [fixHeader]="true"
+            [scrollable]="true"
+            tableHeight="550px"
+            [containFixHeaderHeight]="true"
+            dLoading
+            [loading]="loading"
+            [backdrop]="true"
+            [message]="'One moment please...'"
+            [style.height.px]="550"
+          >
+            <d-column field="$index" header="#" [width]="'10%'"></d-column>
+            <d-column
+              field="permissionsName"
+              header="Name"
+              [width]="'10%'"
+              [sortable]="true"
+              [filterable]="true"
+              [closeFilterWhenScroll]="true"
+            >
+            </d-column>
+            <d-column field="resource" header="Path" [width]="'10%'" [closeFilterWhenScroll]="true"></d-column>
+            <d-column field="description" header="Desc" [width]="'10%'" [closeFilterWhenScroll]="true"> </d-column>
+
+            <d-column field="$index" header="Action" [width]="'10%'">
+              <d-cell>
+                <ng-template let-rowItem="rowItem">
+                  <div class="btn-group over-flow-ellipsis">
+                    <d-button
+                      icon="icon-classroom-post-answers-large"
+                      bsStyle="text-dark"
+                      title="查看"
+                      (btnClick)="openItem(rowItem)"
+                    ></d-button>
+                    <d-button icon="icon-edit" bsStyle="text-dark" title="编辑" (btnClick)="editItem(rowItem)"></d-button>
+                    <d-button icon="icon-delete" bsStyle="text" title="删除" (btnClick)="delItem(rowItem)"></d-button>
+                  </div>
+                </ng-template>
+              </d-cell>
+            </d-column>
+          </d-data-table>
+          <d-pagination
+            [size]="'sm'"
+            [canViewTotal]="true"
+            [canJumpPage]="true"
+            [canChangePageSize]="true"
+            [total]="total"
+            [(pageSize)]="pageSize"
+            [(pageIndex)]="pageIndex"
+            (pageIndexChange)="pageIndexChange($event)"
+            (pageSizeChange)="pageSizeChange($event)"
+          ></d-pagination>
+        </div>
+      </da-col-item>
+    </da-layout-row>
+  </div>
+</div>

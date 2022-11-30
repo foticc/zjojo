@@ -15,8 +15,8 @@ export class ListRoleContentComponent implements OnInit {
   isEdit: boolean;
 
   formData = {
-    permissionsName: null,
-    resource: null,
+    roleName: null,
+    roleWeight: null,
     description: null,
   };
 

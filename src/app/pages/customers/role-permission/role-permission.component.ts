@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService, LoadingType, SortEventArg } from 'ng-devui';
+import { LoadingType, SortEventArg, PositionType, DialogService } from 'ng-devui';
+import { originSource, SourceType } from 'src/app/@core/mock/originSource';
 import { DIALOG_PAGE_TYPE } from '../../data/page-field-config';
 import { SimpleDialogService } from '../../service/simple-dialog.service';
 import { ApiService } from './api.service';
-import { ListRoleContentComponent } from './list-role-content/list-role-content.component';
-import { roleImitateData, RoleType } from 'src/app/@core/mock/role-data';
 
 interface queryCondition {
   path?: string;
 }
 
 @Component({
-  selector: 'app-list-role',
-  templateUrl: './list-role.component.html',
-  styleUrls: ['./list-role.component.scss'],
+  selector: 'app-role-permission',
+  templateUrl: './role-permission.component.html',
+  styleUrls: ['./role-permission.component.scss'],
 })
-export class ListRoleComponent implements OnInit {
+export class RolePermissionComponent implements OnInit {
   total: number;
   content: Array<any>;
-  pageIndex = 1;
+  pageIndex = 0;
   pageSize = 10;
   sortedColumn: SortEventArg[] = [];
   queryCondition: queryCondition = {};
@@ -39,7 +38,7 @@ export class ListRoleComponent implements OnInit {
   }
 
   private init() {
-    this.loading = this.api.permissionPage(this.pageIndex - 1, this.pageSize, this.queryParams).subscribe((v) => {
+    this.loading = this.api.permissionPage(this.pageIndex, this.pageSize, this.queryParams).subscribe((v) => {
       this.total = v.totalElements;
       this.content = v.content;
     });
@@ -68,7 +67,7 @@ export class ListRoleComponent implements OnInit {
       id: 'form-dialog',
       width: '700px',
       maxHeight: '500px',
-      content: ListRoleContentComponent,
+      content: 'ListNetworkDemoContentComponent',
       backdropCloseable: false,
       title: type,
       buttons: [],
@@ -92,11 +91,7 @@ export class ListRoleComponent implements OnInit {
   }
 
   add() {
-    // this.openDialog({}, DIALOG_PAGE_TYPE.ADD);
-    //模拟
-    this.api.save(roleImitateData()).subscribe((v) => {
-      this.init();
-    });
+    this.openDialog({}, DIALOG_PAGE_TYPE.ADD);
   }
 
   delItem(rowItem) {
