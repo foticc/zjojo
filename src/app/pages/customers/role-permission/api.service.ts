@@ -11,7 +11,7 @@ export class ApiService {
 
   page(page = 0, size = 10, query?) {
     return this.http
-      .get('/api/role/page', {
+      .get('/api/role/pagequery', {
         params: {
           page,
           size,
@@ -27,7 +27,7 @@ export class ApiService {
 
   permissionPage(page = 0, size = 10, query?) {
     return this.http
-      .get('/api/permission/page', {
+      .get('/api/permission/rolepage', {
         params: {
           page,
           size,
@@ -42,11 +42,11 @@ export class ApiService {
   }
 
   save(data) {
-    return this.http.post('/api/role/save', data);
+    return this.http.post('/api/permission/savebind', data);
   }
 
   delete(id) {
-    return this.http.delete('/api/role/del', {
+    return this.http.delete('/api/permission/del', {
       params: {
         id,
       },
@@ -54,6 +54,6 @@ export class ApiService {
   }
 
   update(data) {
-    return this.http.put('/api/role/update', data);
+    return this.http.put('/api/permission/update', data);
   }
 }

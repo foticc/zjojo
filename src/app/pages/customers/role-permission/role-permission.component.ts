@@ -4,9 +4,11 @@ import { originSource, SourceType } from 'src/app/@core/mock/originSource';
 import { DIALOG_PAGE_TYPE } from '../../data/page-field-config';
 import { SimpleDialogService } from '../../service/simple-dialog.service';
 import { ApiService } from './api.service';
+import { PermissionContentComponent } from './permission-content/permission-content.component';
 
 interface queryCondition {
   path?: string;
+  role?: string;
 }
 
 @Component({
@@ -22,11 +24,17 @@ export class RolePermissionComponent implements OnInit {
   sortedColumn: SortEventArg[] = [];
   queryCondition: queryCondition = {};
 
+  _mainRole: any;
+
   loading: LoadingType;
 
   constructor(private dialogService: DialogService, private api: ApiService, private dialog: SimpleDialogService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  public set mainRole(v: any) {
+    this._mainRole = v;
+    this.queryCondition.role = v.roleName;
     this.init();
   }
 
@@ -67,7 +75,7 @@ export class RolePermissionComponent implements OnInit {
       id: 'form-dialog',
       width: '700px',
       maxHeight: '500px',
-      content: 'ListNetworkDemoContentComponent',
+      content: PermissionContentComponent,
       backdropCloseable: false,
       title: type,
       buttons: [],
@@ -91,7 +99,12 @@ export class RolePermissionComponent implements OnInit {
   }
 
   add() {
-    this.openDialog({}, DIALOG_PAGE_TYPE.ADD);
+    this.openDialog(
+      {
+        role: this._mainRole,
+      },
+      DIALOG_PAGE_TYPE.ADD
+    );
   }
 
   delItem(rowItem) {

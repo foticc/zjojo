@@ -4,14 +4,17 @@
     [lazy]="true"
     [scrollable]="true"
     (loadMore)="loadMore($event)"
-    [checkable]="true"
-    [headerCheckDisabled]="false"
-    [headerCheckVisible]="false"
+    [headerCheckDisabled]="true"
+    [headerCheckVisible]="true"
     [tableOverflowType]="'overlay'"
     [borderType]="'borderless'"
     [fixHeader]="true"
-    tableHeight="620px"
+    tableHeight="630px"
     [containFixHeaderHeight]="true"
+    dLoading
+    [loading]="roleLoading"
+    [backdrop]="true"
+    [message]="'One moment please...'"
   >
     <thead dTableHead>
       <tr dTableRow>
@@ -20,10 +23,34 @@
         </th>
       </tr>
     </thead>
-    <d-column field="roleName" header="" [sortable]="true" [width]="'10%'" [filterable]="true" [closeFilterWhenScroll]="true">
+    <tbody dTableBody>
+      <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex" let-nestedIndex="nestedIndex">
+        <tr dTableRow (click)="rowClick(rowIndex, nestedIndex, rowItem)" [ngClass]="{ 'row-item-select': selectItem?.id === rowItem.id }">
+          <td dTableCell>
+            <div
+              class="row-item"
+              dPopover
+              [trigger]="'hover'"
+              [controlled]="true"
+              [mouseEnterDelay]="500"
+              [position]="'top-right'"
+              [content]="rowItem.roleWeight"
+            >
+              {{ rowItem?.roleName }}
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #noResultTemplateRef>
+        <div style="text-align: center; margin-top: 20px; height: 490px">No Data</div>
+      </ng-template>
+    </tbody>
+    <!-- <d-column field="roleName" header="" [width]="'10%'">
       <d-cell>
         <ng-template let-rowItem="rowItem">
           <div
+            class="row-item"
+            [ngClass]="{ 'da-list-item-select': selectItem != null && rowItem.id === selectItem.id }"
             dPopover
             [trigger]="'hover'"
             [controlled]="true"
@@ -35,6 +62,6 @@
           </div>
         </ng-template>
       </d-cell>
-    </d-column>
+    </d-column> -->
   </d-data-table>
 </div>

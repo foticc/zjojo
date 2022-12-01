@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingType } from 'ng-devui';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { DataTableComponent, LoadingType, RowCheckChangeEventArg, RowSelectedEventArg } from 'ng-devui';
 import { ApiService } from '../api.service';
 
 interface queryCondition {
@@ -12,10 +12,11 @@ interface queryCondition {
   styleUrls: ['./role-panel.component.scss'],
 })
 export class RolePanelComponent implements OnInit {
+  @Input() select: any;
+  @Output() selectChange = new EventEmitter<any>();
+
   roleHasMore: boolean = true;
   roleContent: Array<any> = [];
-
-  content: Array<any>;
 
   rolePageIndex = 0;
   rolePageSize = 15;
@@ -23,7 +24,12 @@ export class RolePanelComponent implements OnInit {
   roleLoading: LoadingType;
   pageIndex: number;
 
+  selectItem: any;
+
   queryCondition: queryCondition = {};
+
+  @ViewChild(DataTableComponent, { static: true })
+  datatable: DataTableComponent;
 
   constructor(private api: ApiService) {}
 
@@ -43,16 +49,29 @@ export class RolePanelComponent implements OnInit {
       this.roleLoading = this.api.page(pageIndex, this.rolePageSize, this.queryParams).subscribe((v) => {
         this.roleContent = this.roleContent.concat(v.content);
         this.roleHasMore = !v.last;
+        // 默认选择第一个
+        this.rowClick(0, 1, this.roleContent[0]);
       });
     }
   }
 
-  onSearch(event) {
-    console.log('onSearch', event);
+  onSearch(event: string) {
+    this.queryCondition.roleName = event;
+    this.roleLoading = this.api.page(this.pageIndex, this.rolePageSize, this.queryParams).subscribe((v) => {
+      this.roleContent =v.content;
+      this.roleHasMore = !v.last;
+    });
+    console.log('event', event);
   }
 
   loadMore(event) {
     this.rolePageIndex += 1;
     this.init(this.rolePageIndex);
+  }
+
+  rowClick(rowIndex, nestedIndex, rowItem) {
+    this.selectItem = rowItem;
+    this.select = rowItem;
+    this.selectChange.emit(rowItem);
   }
 }

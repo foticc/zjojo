@@ -1,4 +1,5 @@
 @import '../../../../@shared/styles/common.scss';
+
 .da-list-header {
   display: flex;
   justify-content: space-between;
@@ -8,4 +9,15 @@
   .da-header-right {
     margin-bottom: 12px;
   }
+}
+
+.row-item {
+  // text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.row-item-select {
+  background-color: $devui-list-item-selected-bg !important;
 }
