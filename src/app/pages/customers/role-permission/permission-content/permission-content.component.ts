@@ -32,6 +32,12 @@ export class PermissionContentComponent implements OnInit {
     this.formData = this.data.data;
     this.role = this.data.data.role;
     this.isEdit = this.data.type == DIALOG_PAGE_TYPE.OPEN;
+    if (this.isEdit) {
+      this.formData = {
+        role: [1],
+        ...this.data.data,
+      };
+    }
   }
 
   ngOnDestroy(): void {

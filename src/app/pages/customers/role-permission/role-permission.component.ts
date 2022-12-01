@@ -99,12 +99,7 @@ export class RolePermissionComponent implements OnInit {
   }
 
   add() {
-    this.openDialog(
-      {
-        role: this._mainRole,
-      },
-      DIALOG_PAGE_TYPE.ADD
-    );
+    this.openDialog(this._mainRole, DIALOG_PAGE_TYPE.ADD);
   }
 
   delItem(rowItem) {

@@ -10,22 +10,7 @@
     (dSubmit)="submitProjectForm($event)"
     autocomplete="off"
   >
-    <d-form-item>
-      <d-form-label [required]="true" [hasHelp]="true" [helpTips]="'This is the project name.'">RoleName</d-form-label>
-      <d-form-control>
-        <input
-          dTextInput
-          autocomplete="off"
-          name="role"
-          placeholder="Role"
-          [(ngModel)]="role.roleName"
-          [disabled]="true"
-          [dValidateRules]="{
-            validators: [{ required: true }]
-          }"
-        />
-      </d-form-control>
-    </d-form-item>
+ 
     <d-form-item>
       <d-form-label [required]="true" [hasHelp]="true" [helpTips]="'This is the project name.'">Name</d-form-label>
       <d-form-control>
@@ -88,6 +73,7 @@
         >
           Submit
         </d-button>
+        {{ data | json }}
       </d-form-operation>
     </ng-template>
   </form>
