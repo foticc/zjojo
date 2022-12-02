@@ -10,7 +10,6 @@
     (dSubmit)="submitProjectForm($event)"
     autocomplete="off"
   >
- 
     <d-form-item>
       <d-form-label [required]="true" [hasHelp]="true" [helpTips]="'This is the project name.'">Name</d-form-label>
       <d-form-control>
@@ -73,7 +72,7 @@
         >
           Submit
         </d-button>
-        {{ data | json }}
+        {{ formData | json }}
       </d-form-operation>
     </ng-template>
   </form>

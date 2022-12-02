@@ -14,13 +14,11 @@ export class PermissionContentComponent implements OnInit {
 
   isEdit: boolean;
 
-  role: any;
-
   formData = {
     permissionsName: null,
     resource: null,
     description: null,
-    role: [],
+    roleIds: [],
   };
 
   verticalLayout: FormLayout = FormLayout.Horizontal;
@@ -28,16 +26,12 @@ export class PermissionContentComponent implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    console.log('this.data', this.data);
-    this.formData = this.data.data;
-    this.role = this.data.data.role;
+    console.log('this.data', this.data.data);
+    this.formData = {
+      ...this.data.data.rowitem,
+    };
+    this.formData.roleIds = [this.data.data.role.id];
     this.isEdit = this.data.type == DIALOG_PAGE_TYPE.OPEN;
-    if (this.isEdit) {
-      this.formData = {
-        role: [1],
-        ...this.data.data,
-      };
-    }
   }
 
   ngOnDestroy(): void {
