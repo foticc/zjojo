@@ -4,6 +4,7 @@ import { ApiService } from './api.service';
 import { DIALOG_PAGE_TYPE } from '../../data/page-field-config';
 import { SimpleDialogService } from '../../service/simple-dialog.service';
 import { ListUserContentComponent } from './list-user-content/list-user-content.component';
+import { UserRoleBindComponent } from './user-role-bind/user-role-bind.component';
 
 interface queryCondition {
   path?: string;
@@ -107,5 +108,24 @@ export class ListUserComponent implements OnInit {
         this.init();
       }
     );
+  }
+
+  bindRole(rowitem) {
+    const results = this.dialogService.open({
+      id: 'form-dialog',
+      width: '700px',
+      maxHeight: '500px',
+      content: UserRoleBindComponent,
+      backdropCloseable: false,
+      title: '绑定角色',
+      buttons: [],
+      data: {
+        rowitem,
+        onclose: () => {
+          results.modalInstance.hide();
+          this.init();
+        },
+      },
+    });
   }
 }

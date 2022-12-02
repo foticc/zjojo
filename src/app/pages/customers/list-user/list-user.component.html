@@ -42,10 +42,10 @@
             <d-column field="name" header="Name" [width]="'10%'" [sortable]="true" [filterable]="true" [closeFilterWhenScroll]="true">
             </d-column>
             <d-column field="username" header="Path" [width]="'10%'" [closeFilterWhenScroll]="true"></d-column>
-            <d-column field="role" header="Role" [width]="'10%'" [closeFilterWhenScroll]="true">
+            <d-column field="roles" header="Role" [width]="'10%'" [closeFilterWhenScroll]="true">
               <d-cell>
                 <ng-template let-cellItem="cellItem">
-                  <d-tags [tags]="cellItem" [hideBeyondTags]="true"></d-tags>
+                  <d-tags [tags]="cellItem" [displayProperty]="'roleName'" [hideBeyondTags]="true"></d-tags>
                 </ng-template>
               </d-cell>
             </d-column>
@@ -62,6 +62,15 @@
                     ></d-button>
                     <d-button icon="icon-edit" bsStyle="text-dark" title="编辑" (btnClick)="editItem(rowItem)"></d-button>
                     <d-button icon="icon-delete" bsStyle="text" title="删除" (btnClick)="delItem(rowItem)"></d-button>
+                  </div>
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column field="$index" header="Role" [width]="'10%'">
+              <d-cell>
+                <ng-template let-rowItem="rowItem">
+                  <div class="btn-group over-flow-ellipsis">
+                    <d-button icon="icon-set-role" bsStyle="warning" title="编辑" (btnClick)="bindRole(rowItem)"></d-button>
                   </div>
                 </ng-template>
               </d-cell>

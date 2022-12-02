@@ -23,6 +23,7 @@ import { ListRoleContentComponent } from './list-role/list-role-content/list-rol
 import { RolePermissionComponent } from './role-permission/role-permission.component';
 import { RolePanelComponent } from './role-permission/role-panel/role-panel.component';
 import { PermissionContentComponent } from './role-permission/permission-content/permission-content.component';
+import { UserRoleBindComponent } from './list-user/user-role-bind/user-role-bind.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { PermissionContentComponent } from './role-permission/permission-content
     RolePermissionComponent,
     RolePanelComponent,
     PermissionContentComponent,
+    UserRoleBindComponent,
   ],
   imports: [SharedModule, DynamicFormsModule, CustomersRoutingModule],
 })

@@ -40,4 +40,8 @@ export class ApiService {
   update(data) {
     return this.http.put('/api/user/update', data);
   }
+
+  // todo 绑定
+
+  // todo 解绑
 }

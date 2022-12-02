@@ -33,6 +33,7 @@ import {
   DatepickerModule,
   LoadingModule,
   TagsModule,
+  TransferModule,
 } from 'ng-devui';
 import { RelativeTimeModule } from 'ng-devui/relative-time';
 import { I18nModule } from 'ng-devui/i18n';
@@ -79,6 +80,7 @@ const DEVUI_MODULES = [
   RelativeTimeModule,
   LoadingModule,
   TagsModule,
+  TransferModule,
 ];
 const COMPONENTS = [HeaderComponent, FooterComponent, NavbarComponent, PersonalizeComponent];
 @NgModule({

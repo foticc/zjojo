@@ -1,0 +1,15 @@
+<div>
+  <d-transfer
+    dDraggable
+    [disabled]="disabled"
+    [sourceOption]="sourceOption1"
+    [targetOption]="targetOption"
+    (transferToTarget)="transferToTarget($event)"
+    (transferToSource)="transferToSource($event)"
+    [isSearch]="true"
+    [showOptionTitle]="true"
+    [titles]="{ source: 'Source', target: 'Target' }"
+    (afterTransfer)="afterTransfer($event)"
+  >
+  </d-transfer>
+</div>
