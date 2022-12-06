@@ -10,7 +10,7 @@ export class UserRoleBindComponent implements OnInit {
   @Input() data: any;
   disabled = false;
   targetOption = [];
-  sourceOption1 = [
+  sourceOption = [
     { name: 'Option1', value: 1, id: 1, checked: false },
     { name: 'Option2', value: 2, id: 2, checked: false },
     { name: 'Option3', value: 3, id: 3, checked: false },
