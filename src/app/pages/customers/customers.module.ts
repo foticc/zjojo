@@ -24,6 +24,7 @@ import { RolePermissionComponent } from './role-permission/role-permission.compo
 import { RolePanelComponent } from './role-permission/role-panel/role-panel.component';
 import { PermissionContentComponent } from './role-permission/permission-content/permission-content.component';
 import { UserRoleBindComponent } from './list-user/user-role-bind/user-role-bind.component';
+import { GreedySnakeComponent } from './multiple-block/greedy-snake/greedy-snake.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { UserRoleBindComponent } from './list-user/user-role-bind/user-role-bind
     RolePanelComponent,
     PermissionContentComponent,
     UserRoleBindComponent,
+    GreedySnakeComponent,
   ],
   imports: [SharedModule, DynamicFormsModule, CustomersRoutingModule],
 })

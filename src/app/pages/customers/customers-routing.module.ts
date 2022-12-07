@@ -8,6 +8,7 @@ import { ListModalFormsComponent } from './list-modal-forms/list-modal-forms.com
 import { ListNetworkDemoComponent } from './list-network-demo/list-network-demo.component';
 import { ListRoleComponent } from './list-role/list-role.component';
 import { ListUserComponent } from './list-user/list-user.component';
+import { GreedySnakeComponent } from './multiple-block/greedy-snake/greedy-snake.component';
 import { MultipleBlockComponent } from './multiple-block/multiple-block.component';
 import { RolePermissionComponent } from './role-permission/role-permission.component';
 import { StyleListComponent } from './style-list/style-list.component';
@@ -49,7 +50,7 @@ const routes: Routes = [
       },
       {
         path: 'multiple-block',
-        component: MultipleBlockComponent,
+        component: GreedySnakeComponent,
         data: {
           title: '多区块',
         },
